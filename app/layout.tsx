@@ -1,9 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
+import TelegramProvider from "@/components/TelegramProvider";
+
 export const metadata: Metadata = {
   title: "NOVA",
-  description: "Создание Telegram-ботов нового поколения",
+  description: "Telegram Mini Apps",
 };
 
 export default function RootLayout({
@@ -13,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <TelegramProvider>
+          {children}
+        </TelegramProvider>
+      </body>
     </html>
   );
 }
