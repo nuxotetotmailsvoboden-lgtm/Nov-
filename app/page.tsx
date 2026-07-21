@@ -1,3 +1,5 @@
+"use client";
+
 import AppContainer from "@/components/layout/AppContainer";
 import Hero from "@/components/Hero";
 import QuickActions from "@/components/home/QuickActions";
@@ -8,6 +10,10 @@ import SectionTitle from "@/components/SectionTitle";
 import Button from "@/components/Button";
 
 export default function Home() {
+  const handleViewServices = () => {
+    alert("Экран услуг будет добавлен следующим шагом 🚀");
+  };
+
   return (
     <>
       <AppContainer>
@@ -65,7 +71,7 @@ export default function Home() {
           />
         </div>
 
-        <Button>
+        <Button onClick={handleViewServices}>
           Смотреть все услуги
         </Button>
       </AppContainer>
