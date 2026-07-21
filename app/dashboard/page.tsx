@@ -6,10 +6,15 @@ import {
 } from "lucide-react";
 
 import ServiceCard from "@/components/ServiceCard";
+import BottomNav from "@/components/BottomNav";
 
 export default function Dashboard() {
   return (
-    <main>
+    <main
+      style={{
+        paddingBottom: 100,
+      }}
+    >
       <h1
         style={{
           fontSize: 36,
@@ -36,29 +41,31 @@ export default function Dashboard() {
         }}
       >
         <ServiceCard
-          icon={<Bot />}
+          icon={<Bot size={28} />}
           title="Telegram Боты"
           description="Автоматизация бизнеса"
         />
 
         <ServiceCard
-          icon={<Smartphone />}
+          icon={<Smartphone size={28} />}
           title="Mini Apps"
           description="Современные Web Apps"
         />
 
         <ServiceCard
-          icon={<Brain />}
+          icon={<Brain size={28} />}
           title="AI Интеграции"
           description="GPT, Claude, Gemini"
         />
 
         <ServiceCard
-          icon={<Palette />}
+          icon={<Palette size={28} />}
           title="UI / UX"
           description="Современный дизайн"
         />
       </div>
+
+      <BottomNav />
     </main>
   );
 }
