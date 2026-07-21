@@ -13,13 +13,13 @@ export default function Button({
       style={{
         width: "100%",
         padding: "18px",
-        borderRadius: 18,
         border: "none",
+        borderRadius: 18,
         cursor: "pointer",
 
-        color: "#fff",
-        fontWeight: 700,
         fontSize: 17,
+        fontWeight: 700,
+        color: "#fff",
 
         background:
           "linear-gradient(135deg,#7C3AED,#9333EA)",
