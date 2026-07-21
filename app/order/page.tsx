@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getTelegramUser } from "@/lib/telegram";
 
 export default function OrderPage() {
   const router = useRouter();
@@ -10,6 +11,18 @@ export default function OrderPage() {
   const [telegram, setTelegram] = useState("");
   const [project, setProject] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const user = getTelegramUser();
+
+    if (user) {
+      setName(user.first_name || "");
+
+      if (user.username) {
+        setTelegram(`@${user.username}`);
+      }
+    }
+  }, []);
 
   const sendOrder = async () => {
     if (!name.trim() || !telegram.trim() || !project.trim()) {
@@ -40,10 +53,6 @@ export default function OrderPage() {
 
       alert("✅ Заявка успешно отправлена!");
 
-      setName("");
-      setTelegram("");
-      setProject("");
-
       router.push("/dashboard");
     } catch (error) {
       console.error(error);
@@ -71,7 +80,7 @@ export default function OrderPage() {
           marginBottom: 30,
         }}
       >
-        Заполните форму и мы свяжемся с вами.
+        Опишите ваш проект — остальное мы заполним автоматически.
       </p>
 
       <div
