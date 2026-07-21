@@ -6,96 +6,75 @@ export default function Home() {
     <main
       style={{
         minHeight: "100vh",
-        padding: 20,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 24,
         background:
-          "radial-gradient(circle at top,#6d28d9 0%,#1a1035 35%,#09090f 100%)",
+          "radial-gradient(circle at top,#4c1d95 0%,#140b25 35%,#07070b 100%)",
         color: "#fff",
       }}
     >
-      <GlassCard
-        className="hero"
-      >
-        <div
-          style={{
-            padding: 24,
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              fontSize: 56,
-              marginBottom: 16,
-            }}
-          >
-            👑
-          </div>
-
-          <h1
-            style={{
-              fontSize: 34,
-              margin: 0,
-              fontWeight: 800,
-            }}
-          >
-            Nova
-          </h1>
-
-          <p
-            style={{
-              opacity: 0.7,
-              marginTop: 10,
-              marginBottom: 30,
-            }}
-          >
-            Premium Telegram Mini App
-          </p>
-
-          <Button>
-            Начать
-          </Button>
-        </div>
-      </GlassCard>
-
       <div
         style={{
-          height: 25,
+          width: "100%",
+          maxWidth: 420,
         }}
-      />
-
-      <GlassCard>
-        <div
-          style={{
-            padding: 20,
-          }}
-        >
-          <h2
+      >
+        <GlassCard>
+          <div
             style={{
-              marginTop: 0,
+              padding: 34,
+              textAlign: "center",
             }}
           >
-            🔥 Акция
-          </h2>
+            <div
+              style={{
+                width: 84,
+                height: 84,
+                margin: "0 auto 26px",
+                borderRadius: 26,
+                background:
+                  "linear-gradient(135deg,#7c3aed,#9333ea)",
+                boxShadow:
+                  "0 0 45px rgba(124,58,237,.45)",
+              }}
+            />
 
-          <p
-            style={{
-              opacity: 0.8,
-              lineHeight: 1.7,
-            }}
-          >
-            Цена может отличаться в зависимости от выбранных
-            услуг.
-          </p>
+            <h1
+              style={{
+                margin: 0,
+                fontSize: 52,
+                fontWeight: 900,
+                letterSpacing: 2,
+              }}
+            >
+              NOVA
+            </h1>
 
-          <p
-            style={{
-              color: "#b388ff",
-              fontWeight: 700,
-            }}
-          >
-            🎁 Скидка 10% в течение первых 24 часов после оформления заказа.
-          </p>
-        </div>
-      </GlassCard>
+            <p
+              style={{
+                marginTop: 18,
+                opacity: .8,
+                fontSize: 24,
+                lineHeight: 1.6,
+              }}
+            >
+              Создавайте Telegram-ботов
+              <br />
+              без лишних сложностей
+            </p>
+
+            <div
+              style={{
+                marginTop: 40,
+              }}
+            >
+              <Button>Начать</Button>
+            </div>
+          </div>
+        </GlassCard>
+      </div>
     </main>
   );
 }
