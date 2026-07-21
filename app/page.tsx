@@ -1,14 +1,14 @@
 import AppContainer from "@/components/layout/AppContainer";
 import Hero from "@/components/Hero";
-import ServiceCard from "@/components/ServiceCard";
+import QuickActions from "@/components/home/QuickActions";
 import StatsCard from "@/components/StatsCard";
 import BottomNav from "@/components/navigation/BottomNav";
+import ServiceCard from "@/components/ServiceCard";
 
 export default function Home() {
   return (
     <>
       <AppContainer>
-
         <Hero />
 
         <div
@@ -19,22 +19,18 @@ export default function Home() {
             marginBottom: 24,
           }}
         >
-          <StatsCard
-            title="Проектов"
-            value="120+"
-          />
-
-          <StatsCard
-            title="Клиентов"
-            value="85+"
-          />
+          <StatsCard title="Проектов" value="120+" />
+          <StatsCard title="Клиентов" value="85+" />
         </div>
+
+        <QuickActions />
 
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             gap: 18,
+            marginBottom: 32,
           }}
         >
           <ServiceCard
@@ -45,14 +41,14 @@ export default function Home() {
 
           <ServiceCard
             emoji="🌐"
-            title="Mini Apps"
-            subtitle="Telegram Web Apps"
+            title="Telegram Mini Apps"
+            subtitle="Современные Web Apps"
           />
 
           <ServiceCard
             emoji="🎨"
-            title="UI / UX"
-            subtitle="Современный дизайн"
+            title="UI / UX Дизайн"
+            subtitle="Интерфейсы нового поколения"
           />
 
           <ServiceCard
@@ -61,7 +57,6 @@ export default function Home() {
             subtitle="Маркетинг и реклама"
           />
         </div>
-
       </AppContainer>
 
       <BottomNav />
