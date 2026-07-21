@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-
-    const { name, telegram, project } = body;
+    const { name, telegram, project } = await req.json();
 
     if (!name || !telegram || !project) {
       return NextResponse.json(
@@ -13,20 +11,51 @@ export async function POST(req: Request) {
       );
     }
 
-    // Пока просто выводим заявку в лог сервера.
-    // На следующем шаге здесь будет отправка в Telegram.
+    const BOT_TOKEN = process.env.BOT_TOKEN;
+    const CHAT_ID = process.env.CHAT_ID;
 
-    console.log({
-      name,
-      telegram,
-      project,
-      createdAt: new Date().toISOString(),
-    });
+    if (!BOT_TOKEN || !CHAT_ID) {
+      return NextResponse.json(
+        { error: "Не настроен BOT_TOKEN или CHAT_ID" },
+        { status: 500 }
+      );
+    }
+
+    const text = `
+📥 Новая заявка
+
+👤 Имя: ${name}
+
+📱 Telegram: ${telegram}
+
+💬 Проект:
+${project}
+`;
+
+    const telegramResponse = await fetch(
+      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text,
+        }),
+      }
+    );
+
+    if (!telegramResponse.ok) {
+      throw new Error("Ошибка Telegram API");
+    }
 
     return NextResponse.json({
       success: true,
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       { error: "Ошибка сервера" },
       { status: 500 }
