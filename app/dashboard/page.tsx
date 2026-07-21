@@ -44,24 +44,28 @@ export default function Dashboard() {
           icon={<Bot size={28} />}
           title="Telegram Боты"
           description="Автоматизация бизнеса"
+          href="/service/bots"
         />
 
         <ServiceCard
           icon={<Smartphone size={28} />}
           title="Mini Apps"
-          description="Современные Web Apps"
+          description="Современные Telegram Web Apps"
+          href="/service/miniapps"
         />
 
         <ServiceCard
           icon={<Brain size={28} />}
           title="AI Интеграции"
           description="GPT, Claude, Gemini"
+          href="/service/ai"
         />
 
         <ServiceCard
           icon={<Palette size={28} />}
           title="UI / UX"
           description="Современный дизайн"
+          href="/service/design"
         />
       </div>
 
