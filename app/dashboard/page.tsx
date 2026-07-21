@@ -1,36 +1,19 @@
-import Link from "next/link";
+import {
+  Bot,
+  Smartphone,
+  Brain,
+  Palette,
+} from "lucide-react";
 
-export default function DashboardPage() {
-  const services = [
-    {
-      title: "Telegram Боты",
-      description: "Разработка ботов любой сложности",
-      emoji: "🤖",
-    },
-    {
-      title: "Mini Apps",
-      description: "Telegram Web Apps",
-      emoji: "📱",
-    },
-    {
-      title: "AI Интеграции",
-      description: "ChatGPT, Claude, Gemini",
-      emoji: "🧠",
-    },
-    {
-      title: "Автоматизация",
-      description: "CRM, API, платежи",
-      emoji: "⚙️",
-    },
-  ];
+import ServiceCard from "@/components/ServiceCard";
 
+export default function Dashboard() {
   return (
     <main>
       <h1
         style={{
-          fontSize: 34,
-          fontWeight: 800,
-          marginBottom: 10,
+          fontSize: 36,
+          fontWeight: 900,
         }}
       >
         NOVA
@@ -38,69 +21,44 @@ export default function DashboardPage() {
 
       <p
         style={{
-          color: "#A1A1AA",
+          marginTop: 8,
           marginBottom: 30,
+          color: "#9CA3AF",
         }}
       >
-        Выберите интересующую услугу
+        Выберите направление
       </p>
 
       <div
         style={{
           display: "grid",
-          gap: 16,
+          gap: 18,
         }}
       >
-        {services.map((item) => (
-          <div
-            key={item.title}
-            style={{
-              padding: 22,
-              borderRadius: 22,
-              background: "#18181B",
-              border: "1px solid #2A2A2A",
-            }}
-          >
-            <div
-              style={{
-                fontSize: 38,
-              }}
-            >
-              {item.emoji}
-            </div>
+        <ServiceCard
+          icon={<Bot />}
+          title="Telegram Боты"
+          description="Автоматизация бизнеса"
+        />
 
-            <h2
-              style={{
-                marginTop: 14,
-                fontSize: 22,
-              }}
-            >
-              {item.title}
-            </h2>
+        <ServiceCard
+          icon={<Smartphone />}
+          title="Mini Apps"
+          description="Современные Web Apps"
+        />
 
-            <p
-              style={{
-                color: "#A1A1AA",
-                marginTop: 8,
-              }}
-            >
-              {item.description}
-            </p>
-          </div>
-        ))}
+        <ServiceCard
+          icon={<Brain />}
+          title="AI Интеграции"
+          description="GPT, Claude, Gemini"
+        />
+
+        <ServiceCard
+          icon={<Palette />}
+          title="UI / UX"
+          description="Современный дизайн"
+        />
       </div>
-
-      <Link
-        href="/"
-        style={{
-          display: "block",
-          marginTop: 35,
-          textAlign: "center",
-          color: "#8B5CF6",
-        }}
-      >
-        ← Назад
-      </Link>
     </main>
   );
 }
