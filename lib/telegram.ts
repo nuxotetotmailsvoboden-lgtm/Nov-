@@ -1,6 +1,6 @@
 "use client";
 
-import { init, viewport, miniApp } from "@telegram-apps/sdk";
+import { init, miniApp } from "@telegram-apps/sdk";
 
 let initialized = false;
 
@@ -16,10 +16,6 @@ export function initTelegram() {
       miniApp.mount();
     }
 
-    if (viewport.mount.isAvailable()) {
-      viewport.mount();
-    }
-
     if (miniApp.ready.isAvailable()) {
       miniApp.ready();
     }
@@ -28,6 +24,14 @@ export function initTelegram() {
       miniApp.expand();
     }
   } catch (e) {
-    console.log("Telegram SDK:", e);
+    console.error(e);
+  }
+}
+
+export function getTelegramUser() {
+  try {
+    return miniApp.initDataUnsafe.user;
+  } catch {
+    return null;
   }
 }
