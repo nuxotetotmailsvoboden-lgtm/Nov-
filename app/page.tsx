@@ -1,5 +1,5 @@
 import AppContainer from "@/components/layout/AppContainer";
-import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import StatsCard from "@/components/StatsCard";
 import BottomNav from "@/components/navigation/BottomNav";
@@ -8,13 +8,14 @@ export default function Home() {
   return (
     <>
       <AppContainer>
-        <Header />
+
+        <Hero />
 
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 14,
+            gap: 16,
             marginBottom: 24,
           }}
         >
@@ -25,7 +26,7 @@ export default function Home() {
 
           <StatsCard
             title="Клиентов"
-            value="85"
+            value="85+"
           />
         </div>
 
@@ -33,7 +34,7 @@ export default function Home() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 16,
+            gap: 18,
           }}
         >
           <ServiceCard
@@ -60,6 +61,7 @@ export default function Home() {
             subtitle="Маркетинг и реклама"
           />
         </div>
+
       </AppContainer>
 
       <BottomNav />
