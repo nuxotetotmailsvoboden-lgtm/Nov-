@@ -1,39 +1,51 @@
 import AppContainer from "@/components/layout/AppContainer";
-import Header from "@/components/Header";
+import BottomNav from "@/components/navigation/BottomNav";
+import SectionTitle from "@/components/SectionTitle";
 import ServiceCard from "@/components/ServiceCard";
-import { services } from "@/lib/services";
 
 export default function ServicesPage() {
   return (
-    <AppContainer>
-      <Header />
+    <>
+      <AppContainer>
+        <SectionTitle
+          title="Все услуги"
+          subtitle="Выберите интересующее направление"
+        />
 
-      <h2
-        style={{
-          marginTop: 10,
-          marginBottom: 22,
-          fontSize: 28,
-        }}
-      >
-        Каталог услуг
-      </h2>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 18,
-        }}
-      >
-        {services.map((service) => (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 18,
+          }}
+        >
           <ServiceCard
-            key={service.id}
-            emoji={service.emoji}
-            title={service.title}
-            subtitle={service.price}
+            emoji="🤖"
+            title="Telegram-боты"
+            subtitle="Автоматизация бизнеса"
           />
-        ))}
-      </div>
-    </AppContainer>
+
+          <ServiceCard
+            emoji="🌐"
+            title="Telegram Mini Apps"
+            subtitle="Современные Web Apps"
+          />
+
+          <ServiceCard
+            emoji="🎨"
+            title="UI / UX Дизайн"
+            subtitle="Интерфейсы нового поколения"
+          />
+
+          <ServiceCard
+            emoji="📢"
+            title="Продвижение"
+            subtitle="Маркетинг и реклама"
+          />
+        </div>
+      </AppContainer>
+
+      <BottomNav />
+    </>
   );
 }
