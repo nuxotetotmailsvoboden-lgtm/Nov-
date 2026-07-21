@@ -4,6 +4,7 @@ import QuickActions from "@/components/home/QuickActions";
 import StatsCard from "@/components/StatsCard";
 import BottomNav from "@/components/navigation/BottomNav";
 import ServiceCard from "@/components/ServiceCard";
+import SectionTitle from "@/components/SectionTitle";
 
 export default function Home() {
   return (
@@ -24,6 +25,11 @@ export default function Home() {
         </div>
 
         <QuickActions />
+
+        <SectionTitle
+          title="Наши услуги"
+          subtitle="Разрабатываем современные цифровые продукты"
+        />
 
         <div
           style={{
