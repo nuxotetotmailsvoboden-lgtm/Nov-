@@ -1,33 +1,77 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Home, Bot, User } from "lucide-react";
 
-interface ButtonProps {
-  children: React.ReactNode;
-}
+export default function BottomNav() {
+  const pathname = usePathname();
 
-export default function Button({ children }: ButtonProps) {
-  const router = useRouter();
+  const items = [
+    {
+      href: "/dashboard",
+      title: "Главная",
+      icon: Home,
+    },
+    {
+      href: "/services",
+      title: "Услуги",
+      icon: Bot,
+    },
+    {
+      href: "/profile",
+      title: "Профиль",
+      icon: User,
+    },
+  ];
 
   return (
-    <button
-      onClick={() => router.push("/dashboard")}
+    <nav
       style={{
-        width: "100%",
-        padding: "18px",
-        border: "none",
-        borderRadius: 18,
-        cursor: "pointer",
-        fontSize: 17,
-        fontWeight: 700,
-        color: "#fff",
-        background:
-          "linear-gradient(135deg,#7C3AED,#9333EA)",
-        boxShadow:
-          "0 0 25px rgba(124,58,237,.45)",
+        position: "fixed",
+        left: "50%",
+        bottom: 16,
+        transform: "translateX(-50%)",
+
+        width: "calc(100% - 24px)",
+        maxWidth: 420,
+
+        display: "flex",
+        justifyContent: "space-around",
+
+        padding: "12px",
+
+        borderRadius: 24,
+
+        background: "rgba(20,20,24,.85)",
+        backdropFilter: "blur(20px)",
+
+        border: "1px solid rgba(255,255,255,.08)",
       }}
     >
-      {children}
-    </button>
+      {items.map((item) => {
+        const Icon = item.icon;
+        const active = pathname === item.href;
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 6,
+
+              color: active ? "#8B5CF6" : "#888",
+              fontSize: 12,
+            }}
+          >
+            <Icon size={22} />
+            {item.title}
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
