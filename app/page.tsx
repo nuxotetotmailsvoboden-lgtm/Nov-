@@ -37,7 +37,7 @@ export default function Home() {
               fontWeight: 800,
             }}
           >
-            TOMIRIS MARKET
+            Nova
           </h1>
 
           <p
