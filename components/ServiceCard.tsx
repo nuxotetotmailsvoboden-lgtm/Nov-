@@ -2,95 +2,83 @@
 
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import GlassCard from "./GlassCard";
 
 interface Props {
-  emoji: string;
+  icon: React.ReactNode;
   title: string;
-  subtitle: string;
-  onClick?: () => void;
+  description: string;
 }
 
 export default function ServiceCard({
-  emoji,
+  icon,
   title,
-  subtitle,
-  onClick,
+  description,
 }: Props) {
   return (
     <motion.div
-      whileHover={{
-        y: -3,
-      }}
-      whileTap={{
-        scale: 0.99,
-      }}
-      transition={{
-        duration: 0.2,
-      }}
-      onClick={onClick}
+      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
       style={{
-        cursor: onClick ? "pointer" : "default",
+        display: "flex",
+        alignItems: "center",
+        gap: 18,
+
+        padding: 20,
+
+        borderRadius: 24,
+
+        background: "rgba(255,255,255,.05)",
+
+        backdropFilter: "blur(18px)",
+
+        border: "1px solid rgba(255,255,255,.08)",
       }}
     >
-      <GlassCard>
-        <div
+      <div
+        style={{
+          width: 58,
+          height: 58,
+
+          borderRadius: 18,
+
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+
+          background:
+            "linear-gradient(135deg,#7C3AED,#9333EA)",
+
+          fontSize: 28,
+        }}
+      >
+        {icon}
+      </div>
+
+      <div style={{ flex: 1 }}>
+        <h3
           style={{
-            padding: 22,
-            display: "flex",
-            alignItems: "center",
+            fontSize: 20,
+            fontWeight: 700,
           }}
         >
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              borderRadius: 18,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: 28,
-              background:
-                "linear-gradient(135deg,#7C3AED,#9333EA)",
-              flexShrink: 0,
-            }}
-          >
-            {emoji}
-          </div>
+          {title}
+        </h3>
 
-          <div
-            style={{
-              marginLeft: 18,
-              flex: 1,
-            }}
-          >
-            <div
-              style={{
-                fontSize: 18,
-                fontWeight: 700,
-                color: "#fff",
-              }}
-            >
-              {title}
-            </div>
+        <p
+          style={{
+            marginTop: 6,
+            color: "#9CA3AF",
+          }}
+        >
+          {description}
+        </p>
+      </div>
 
-            <div
-              style={{
-                marginTop: 6,
-                color: "#A1A1AA",
-                fontSize: 14,
-              }}
-            >
-              {subtitle}
-            </div>
-          </div>
-
-          <ChevronRight
-            size={22}
-            color="#A78BFA"
-          />
-        </div>
-      </GlassCard>
+      <ChevronRight
+        size={22}
+        color="#777"
+      />
     </motion.div>
   );
 }
