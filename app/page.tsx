@@ -5,6 +5,7 @@ import StatsCard from "@/components/StatsCard";
 import BottomNav from "@/components/navigation/BottomNav";
 import ServiceCard from "@/components/ServiceCard";
 import SectionTitle from "@/components/SectionTitle";
+import Button from "@/components/Button";
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
             display: "flex",
             flexDirection: "column",
             gap: 18,
-            marginBottom: 32,
+            marginBottom: 28,
           }}
         >
           <ServiceCard
@@ -63,6 +64,10 @@ export default function Home() {
             subtitle="Маркетинг и реклама"
           />
         </div>
+
+        <Button>
+          Смотреть все услуги
+        </Button>
       </AppContainer>
 
       <BottomNav />
