@@ -1,27 +1,39 @@
+import AppContainer from "@/components/layout/AppContainer";
 import Header from "@/components/Header";
 import ServiceCard from "@/components/ServiceCard";
+import StatsCard from "@/components/StatsCard";
 import BottomNav from "@/components/navigation/BottomNav";
 
 export default function Home() {
   return (
     <>
-      <main
-        style={{
-          minHeight: "100vh",
-          padding: 20,
-          paddingBottom: 120,
-          background:
-            "radial-gradient(circle at top,#4c1d95 0%,#140b25 35%,#07070b 100%)",
-          color: "#fff",
-        }}
-      >
+      <AppContainer>
         <Header />
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 14,
+            marginBottom: 24,
+          }}
+        >
+          <StatsCard
+            title="Проектов"
+            value="120+"
+          />
+
+          <StatsCard
+            title="Клиентов"
+            value="85"
+          />
+        </div>
 
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 18,
+            gap: 16,
           }}
         >
           <ServiceCard
@@ -45,10 +57,10 @@ export default function Home() {
           <ServiceCard
             emoji="📢"
             title="Продвижение"
-            subtitle="Реклама и маркетинг"
+            subtitle="Маркетинг и реклама"
           />
         </div>
-      </main>
+      </AppContainer>
 
       <BottomNav />
     </>
