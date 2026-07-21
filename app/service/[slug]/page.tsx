@@ -40,13 +40,13 @@ const services = {
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
 
-  const service =
-    services[slug as keyof typeof services];
+  const service = services[slug as keyof typeof services];
 
   if (!service) {
     return (
       <main>
         <h1>404</h1>
+        <p>Услуга не найдена</p>
       </main>
     );
   }
@@ -61,6 +61,7 @@ export default async function ServicePage({ params }: Props) {
           gap: 8,
           color: "#8B5CF6",
           marginBottom: 30,
+          textDecoration: "none",
         }}
       >
         <ArrowLeft size={18} />
@@ -76,10 +77,7 @@ export default async function ServicePage({ params }: Props) {
           backdropFilter: "blur(20px)",
         }}
       >
-        <Sparkles
-          size={42}
-          color="#8B5CF6"
-        />
+        <Sparkles size={42} color="#8B5CF6" />
 
         <h1
           style={{
@@ -112,23 +110,31 @@ export default async function ServicePage({ params }: Props) {
           {service.description}
         </p>
 
-        <button
+        <Link
+          href="/order"
           style={{
-            width: "100%",
+            display: "block",
             marginTop: 30,
-            padding: 18,
-            border: "none",
-            borderRadius: 18,
-            color: "#fff",
-            fontWeight: 700,
-            fontSize: 17,
-            cursor: "pointer",
-            background:
-              "linear-gradient(135deg,#7C3AED,#9333EA)",
+            textDecoration: "none",
           }}
         >
-          Заказать разработку
-        </button>
+          <button
+            style={{
+              width: "100%",
+              padding: 18,
+              border: "none",
+              borderRadius: 18,
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: 17,
+              cursor: "pointer",
+              background:
+                "linear-gradient(135deg,#7C3AED,#9333EA)",
+            }}
+          >
+            Заказать разработку
+          </button>
+        </Link>
       </div>
     </main>
   );
