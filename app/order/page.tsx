@@ -6,11 +6,30 @@ import { useRouter } from "next/navigation";
 export default function OrderPage() {
   const router = useRouter();
 
-  const [form, setForm] = useState({
-    name: "",
-    telegram: "",
-    project: "",
-  });
+  const [name, setName] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [service, setService] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const sendOrder = async () => {
+    if (!name || !telegram || !service) {
+      alert("Заполните все поля.");
+      return;
+    }
+
+    setLoading(true);
+
+    // Пока только проверка.
+    // Следующим шагом сюда подключим Telegram-бота.
+
+    setTimeout(() => {
+      setLoading(false);
+
+      alert("Заявка успешно создана!");
+
+      router.push("/dashboard");
+    }, 1200);
+  };
 
   return (
     <main>
@@ -20,77 +39,67 @@ export default function OrderPage() {
           fontWeight: 900,
         }}
       >
-        Заявка
+        Заказать разработку
       </h1>
 
       <p
         style={{
-          marginTop: 10,
           color: "#A1A1AA",
+          marginTop: 10,
+          marginBottom: 30,
         }}
       >
-        Расскажите о своем проекте
+        Заполните форму и мы свяжемся с вами.
       </p>
 
       <div
         style={{
           display: "grid",
           gap: 18,
-          marginTop: 30,
         }}
       >
         <input
           placeholder="Ваше имя"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           style={inputStyle}
         />
 
         <input
-          placeholder="@telegram"
-          value={form.telegram}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              telegram: e.target.value,
-            })
-          }
+          placeholder="@username"
+          value={telegram}
+          onChange={(e) => setTelegram(e.target.value)}
           style={inputStyle}
         />
 
         <textarea
-          placeholder="Опишите проект..."
           rows={6}
-          value={form.project}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              project: e.target.value,
-            })
-          }
+          placeholder="Опишите проект..."
+          value={service}
+          onChange={(e) => setService(e.target.value)}
           style={{
             ...inputStyle,
-            resize: "none",
+            resize: "vertical",
           }}
         />
 
         <button
-          style={buttonStyle}
-          onClick={() => {
-            alert("Следующим шагом подключим Telegram-бота 🚀");
+          onClick={sendOrder}
+          disabled={loading}
+          style={{
+            ...buttonStyle,
+            opacity: loading ? 0.6 : 1,
           }}
         >
-          Отправить заявку
+          {loading ? "Отправка..." : "Отправить заявку"}
         </button>
 
         <button
           onClick={() => router.back()}
           style={{
             background: "transparent",
-            color: "#8B5CF6",
             border: "none",
+            color: "#8B5CF6",
             cursor: "pointer",
             fontSize: 16,
           }}
@@ -102,7 +111,7 @@ export default function OrderPage() {
   );
 }
 
-const inputStyle = {
+const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "18px",
   borderRadius: 18,
@@ -110,9 +119,11 @@ const inputStyle = {
   background: "rgba(255,255,255,.05)",
   color: "#fff",
   fontSize: 16,
+  outline: "none",
 };
 
-const buttonStyle = {
+const buttonStyle: React.CSSProperties = {
+  width: "100%",
   padding: "18px",
   borderRadius: 18,
   border: "none",
@@ -120,6 +131,5 @@ const buttonStyle = {
   color: "#fff",
   fontWeight: 700,
   fontSize: 17,
-  background:
-    "linear-gradient(135deg,#7C3AED,#9333EA)",
+  background: "linear-gradient(135deg,#7C3AED,#9333EA)",
 };
