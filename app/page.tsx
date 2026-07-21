@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import AppContainer from "@/components/layout/AppContainer";
 import Hero from "@/components/Hero";
 import QuickActions from "@/components/home/QuickActions";
@@ -10,9 +12,7 @@ import SectionTitle from "@/components/SectionTitle";
 import Button from "@/components/Button";
 
 export default function Home() {
-  const handleViewServices = () => {
-    alert("Экран услуг будет добавлен следующим шагом 🚀");
-  };
+  const router = useRouter();
 
   return (
     <>
@@ -71,7 +71,7 @@ export default function Home() {
           />
         </div>
 
-        <Button onClick={handleViewServices}>
+        <Button onClick={() => router.push("/services")}>
           Смотреть все услуги
         </Button>
       </AppContainer>
