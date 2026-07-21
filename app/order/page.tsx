@@ -8,27 +8,49 @@ export default function OrderPage() {
 
   const [name, setName] = useState("");
   const [telegram, setTelegram] = useState("");
-  const [service, setService] = useState("");
+  const [project, setProject] = useState("");
   const [loading, setLoading] = useState(false);
 
   const sendOrder = async () => {
-    if (!name || !telegram || !service) {
-      alert("Заполните все поля.");
+    if (!name.trim() || !telegram.trim() || !project.trim()) {
+      alert("Заполните все поля");
       return;
     }
 
     setLoading(true);
 
-    // Пока только проверка.
-    // Следующим шагом сюда подключим Telegram-бота.
+    try {
+      const response = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          telegram,
+          project,
+        }),
+      });
 
-    setTimeout(() => {
-      setLoading(false);
+      const data = await response.json();
 
-      alert("Заявка успешно создана!");
+      if (!response.ok) {
+        throw new Error(data.error || "Ошибка");
+      }
+
+      alert("✅ Заявка успешно отправлена!");
+
+      setName("");
+      setTelegram("");
+      setProject("");
 
       router.push("/dashboard");
-    }, 1200);
+    } catch (error) {
+      console.error(error);
+      alert("❌ Не удалось отправить заявку");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,12 +96,13 @@ export default function OrderPage() {
 
         <textarea
           rows={6}
-          placeholder="Опишите проект..."
-          value={service}
-          onChange={(e) => setService(e.target.value)}
+          placeholder="Опишите ваш проект..."
+          value={project}
+          onChange={(e) => setProject(e.target.value)}
           style={{
             ...inputStyle,
             resize: "vertical",
+            minHeight: 150,
           }}
         />
 
